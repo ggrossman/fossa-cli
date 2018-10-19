@@ -105,7 +105,6 @@ test:
 unit-test:
 	go test -short -covermode=atomic $(GO_TEST_FLAGS) ./...
 
-.PHONY: ci-unit-test
 ci-unit-test: $(GO_JUNIT_REPORT)
 	GO_TEST_FLAGS="-coverprofile=coverage.txt -v" make -s unit-test | go-junit-report;
 	if [ -n "$${CODECOV_TOKEN}" ]; then curl -s https://codecov.io/bash | bash 1>&2; fi
